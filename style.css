@@ -1,0 +1,247 @@
+.map {
+    width: 980px;
+    height: 630px;
+    position: relative;
+    background-image: url(./img/map.png);   
+}
+
+.friendBar {
+    width: 536px;
+    height: 63px;
+    position: absolute;
+    z-index: 0;
+    top: 547px;
+    left: 4px;
+    background-image: url(./img/friendBar.png);
+}
+
+.leftArrow {
+    width: 14px;
+    height: 27px;
+    position: absolute;
+    z-index: 2;
+    top: 17px;
+    left: 11px;
+    background-image: url(./img/arrow.png);
+}
+
+.rightArrow {
+    width: 14px;
+    height: 27px;
+    position: absolute;
+    rotate: 180deg;
+    z-index: 2;
+    top: 17px;
+    left: 509px;
+    background-image: url(./img/arrow.png);
+}
+
+.friendBox {
+    height: 27px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    top: 17px;
+    left: 27px;
+}
+
+.friendHave, .friendNotHave  {
+    margin: 1px 5px 0 5px;
+    z-index: 1;
+}
+
+.friendHave {
+    width: 50px;
+    height: 51px;
+    position: relative;
+    background-image: url(./img/friendHave.png);
+}
+
+.plus {
+    width: 34px;
+    height: 35px;
+    position: relative;
+    top: -10px;
+    left: 23px;
+    background-image: url(./img/plus.png);
+}
+
+
+.friendNotHave {
+    width: 50px;
+    height: 51px;
+    position: relative;
+    background-image: url(./img/friendNotHave.png);
+}
+
+.chat {
+    width: 65px;
+    height: 60px;
+    position: absolute;
+    z-index: 1;
+    top: 548px;
+    left: 545px;
+    background-image: url(./img/chat.png);
+}
+
+.toUniver {
+    width: 206px;
+    height: 67px;
+    position: absolute;
+    z-index: 1;
+    top: 547px;
+    left: 613px;
+    background-image: url(./img/toUniver.png);
+}
+
+
+.message {
+    width: 64px;
+    height: 60px;
+    position: absolute;
+    z-index: 1;
+    top: 548px;
+    left: 824px;
+    background-image: url(./img/message.png);
+}
+
+.rating {
+    width: 66px;
+    height: 61px;
+    position: absolute;
+    z-index: 1;
+    top: 548px;
+    left: 894px;
+    background-image: url(./img/rating.png);
+}
+
+.woman {
+    width: 21px;
+    height: 69px;
+    position: absolute;
+    z-index: 1;
+    top: 442px;
+    left: 433px;
+    background-image: url(./img/woman.png);
+    --startX: 442px;
+    --startY: 433px;
+    --finishX: 0px;
+    --finishY: 0px;
+}
+
+@keyframes goToPoint {
+    from{
+        left: var(--startX);
+        top: var(--startY);
+    }
+    to {
+        left: var(--finishX);
+        top: var(--finishY);
+    }
+}
+
+.ratingBoard {
+    width: 523px;
+    height: 466px;
+    position: absolute;
+    display: block;
+    z-index: 3;
+    top: -620px;
+    left: 247px;
+    background-image: url(./img/ratingBoard.png);
+
+}
+
+.ratingCloseButton {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    display: block;
+    z-index: 3;
+    top: 25px;
+    left: 477px;
+    background-image: url(./img/ratingCloseButton.png);
+}
+
+.ratingHead {
+    width: 403px;
+    height: 29px;
+    position: absolute;
+    display: block;
+    z-index: 3;
+    top: 135px;
+    left: 60px;
+    background-image: url(./img/ratingHead.png)
+}
+
+.ratingBox {
+    width: 424px;
+    height: 249px;
+    overflow-y: auto;
+    position: absolute;
+    top: 163px;
+    left: 60px;
+    z-index: 4;
+    scrollbar-color: #64addf #ac7446;
+    scrollbar-width: thin;
+}
+
+
+.itemRating {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 403px;
+    height: 29px;
+    margin: 6px 0px 6px 0px;
+    z-index: 4;
+    top: 0px;
+    left: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-image: url(./img/itemRating.png)
+}
+
+.position {
+    width: 45px;
+    padding-left:15px;
+}
+
+.avatar {
+    width: 30px;
+    background: url(./img/);
+}
+.name {
+    width: 220px;
+    padding-left:12px;
+    padding-right: 5px;
+}
+
+#template {
+    display: none;    
+}
+
+
+@keyframes goToDown {
+    from {
+top: -620px;
+    }
+    to {
+   top: 73px;    
+    }
+}
+@keyframes goToUp {
+    from {
+        top: 73px;  
+    }
+    to {
+        top: -620px;
+    }
+}
+
+
+

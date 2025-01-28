@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="map">
+        <div class="friendBar">
+            <div class="leftArrow"></div>
+            <div class="friendBox">
+                <div class="friendHave">
+                    <div class="plus"></div>
+                </div>
+                <div class="friendHave"></div>
+                <div class="friendHave"></div>
+                <div class="friendHave"></div>
+                <div class="friendHave"></div>
+                <div class="friendHave"></div>
+                <div class="friendNotHave"></div>
+                <div class="friendNotHave"></div>
+<div class="friendNotHave" style='visibility: hidden'></div>
+<div class="friendNotHave" style='visibility: hidden'></div>
+            </div>
+            <div class="rightArrow"></div>
+        </div>
+        <div class="chat"></div>
+        <div class="toUniver"></div>
+        <div class="message"></div>
+        <div class="rating"></div>
+        <div class="woman"></div>
+
+        <div class="ratingBoard">
+            <div class="ratingCloseButton"></div>
+            <div class="ratingHead"></div>
+            <div class="ratingBox">
+                <div class="itemRating" id="template">
+                    <div class="position"></div>
+                    <div class="avatar"></div>
+                    <div class="name"></div>
+                    <div class="points"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    </div>
+</body>
+<script src='data.js'></script>
+    <script>
+        //alert(data.rating[0].name)
+        let toUniver = document.querySelector('.toUniver');
+        let woman = document.querySelector('.woman');
+        let iAmGoing = false;
+        //Чтобы не срабатывала кнопка "в универ", пока девушка двигается по маршруту
+
+        let coord = [[340, 411], [265, 454], [179, 472], [98, 444], [110, 382], ]
+        let n = 0;
+        //counter points
+
+        toUniver.addEventListener('click', (e) => {
+            if (iAmGoing)
+                return;
+
+            iAmGoing = !iAmGoing;
+
+            woman.style.setProperty('--finishX', `${coord[n][0]}px`);
+            woman.style.setProperty('--finishY', `${coord[n][1]}px`);
+            woman.style.animation = 'linear 2s goToPoint forwards';
+
+            setTimeout( () => {
+                woman.style.animation = '';
+                woman.style.setProperty('--startX', `${coord[n][0]}px`);
+                woman.style.setProperty('--startY', `${coord[n][1]}px`);
+                n += 1;
+                iAmGoing = !iAmGoing;
+            }
+            , 2050);
+
+            woman.style.left = coord[n][0] + 'px';
+            woman.style.top = coord[n][1] + 'px';
+        }
+        )
+
+        let leftArrow = document.querySelector('.leftArrow');
+        let rightArrow = document.querySelector('.rightArrow');
+        let friendBox = document.querySelector('.friendBox');
+
+        leftArrow.addEventListener('click', handleClickArrow)
+        rightArrow.addEventListener('click', handleClickArrow)
+
+        let friendBoxLeft = 27;
+
+        function handleClickArrow(e) {
+
+            if (e.target.className == 'leftArrow') {
+
+                if (friendBox.lastElementChild.getBoundingClientRect().left == 464) {
+                    return
+                }
+                friendBoxLeft = friendBoxLeft - 60
+
+            } else {
+                if (friendBox.firstElementChild.getBoundingClientRect().left == 44) {
+                    return
+                }
+                friendBoxLeft = friendBoxLeft + 60
+            }
+
+            friendBox.style.left = friendBoxLeft + 'px';
+
+            for (let item of friendBox.children) {
+                if (item.getBoundingClientRect().left < 27 || item.getBoundingClientRect().left > 464) {
+                    item.style.visibility = 'hidden'
+                } else {
+                    item.style.visibility = 'visible'
+                }
+            }
+        }
+
+
+        let rating = document.querySelector('.rating');
+        let itemRating = document.querySelector('.itemRating');
+        let ratingBox = document.querySelector('.ratingBox');
+        let ratingBoard = document.querySelector('.ratingBoard');
+
+        rating.addEventListener('click', (e)=>{
+
+            let ratingData = data.rating;
+            let friendsData = data.friends;
+
+            ratingData.forEach((elem)=> {
+
+                console.dir(ratingBox)
+                let item = itemRating.cloneNode(true);
+                
+                friendsData.forEach((friend)=> {
+                    if (elem.id==friend.id) item.style.color='yellow';
+                })
+
+                item.style.display='flex';
+                item.children[0].innerHTML = elem.id
+                item.children[1].style.background=`url(${elem.img})`;
+                item.children[2].innerHTML = elem.name + ' ' + elem.lastName
+                item.children[3].innerHTML = elem.points;
+                ratingBox.append(item);
+            })
+
+            ratingBoard.style.animation='ease 1.5s goToDown forwards';
+        
+
+        })
+
+        let ratingCloseButton = document.querySelector('.ratingCloseButton');
+
+        ratingCloseButton.addEventListener('click',(e)=>{
+        ratingBoard.style.animation='ease 1.5s goToUp forwards';     
+        })
+    </script>
+</html>
